@@ -60,6 +60,14 @@ features_section();
 /*=======$$//Start Testimonials Section//$$=======*/
 function testimonials_section() {
   let testimonials = document.querySelector(`.testimonials .container`);
+  let testimonial = [
+    { icons: [`filled fas fa-star`, `far fa-star`] },
+    { icons: [`filled fas fa-star`, `far fa-star`] },
+    { icons: [`filled fas fa-star`, `far fa-star`] },
+    { icons: [`filled fas fa-star`, `filled fas fa-star`] },
+    { icons: [`far fa-star`, `far fa-star`] },
+    { icons: [`far fa-star`, `far fa-star`] },
+  ];
   for (let i = 0; i < 6; i++) {
     testimonials.innerHTML += `
   <div class="flex">
@@ -70,26 +78,13 @@ function testimonials_section() {
       <i class="filled fas fa-star"></i>
       <i class="filled fas fa-star"></i>
       <i class="filled fas fa-star"></i>
-      ${create_icons(i)}
+      <i class="${testimonial[i].icons[0]}"></i>
+      <i class="${testimonial[i].icons[1]}"></i>
     </div>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores et reiciendis voluptatum, amet est natus
       quaerat ducimus</p>
   </div>
     `;
-  }
-  function create_icons(index) {
-    let icon;
-    if (index < 3) {
-      icon = `<i class="filled fas fa-star"></i>
-              <i class="far fa-star"></i>`;
-    } else if (index == 3) {
-      icon = `<i class="filled fas fa-star"></i>
-              <i class="filled fas fa-star"></i>`;
-    } else {
-      icon = `<i class="far fa-star"></i>
-              <i class="far fa-star"></i>`;
-    }
-    return icon;
   }
 }
 testimonials_section();
