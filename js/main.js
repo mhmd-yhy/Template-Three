@@ -1,25 +1,71 @@
 /*=======$$//Start Articles Section//$$=======*/
 function article_section() {
+  let cards = [
+    { oyunName: "World Of Warcaft" },
+    { oyunName: "Hello Neighbor Hide" },
+    { oyunName: "Baldur's Gate 3" },
+    { oyunName: "YuGiOh" },
+    { oyunName: "Dark Souls III" },
+    { oyunName: "League Of Legends" },
+    { oyunName: "Large ball" },
+    { oyunName: "Sunshine Days" },
+  ];
   let article = document.querySelector(`.article .container`);
   article.innerHTML = ``;
   for (let i = 0; i < 8; i++) {
     article.innerHTML += `
-  <div class="flex">
+  <div class="article-box flex">
     <img src="imgs/cat-0${i + 1}.jpg" alt="">
     <div class="text-article">
-      <h4>Test Title</h4>
+      <h4>${cards[i].oyunName}</h4>
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit</p>
     </div>
     <div class="alt flex">
-      <a href="#">Read More</a>
+      <button  class = "article-read" href="">Read More</button>
       <i class="fas fa-long-arrow-alt-right"></i>
     </div>
   </div>
   `;
   }
+
+  // When click to "more" button
+  document.querySelectorAll(".article-read").forEach((link) => {
+    link.addEventListener(`click`, function (e) {
+      e.preventDefault();
+      let popup = document.createElement(`div`);
+      popup.classList = `pop`;
+      popup.innerHTML += `
+    <div class="pop-overflow"></div>
+    <div class="pop-show">
+      <div class="btn-close">X</div>
+      <div class="description-pop" style = "text-align : start">
+        <h2>${
+          e.target.parentElement.parentElement.querySelector(".text-article h4")
+            .innerHTML
+        } : </h2>
+        <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+      </div>
+    <img src="${
+      e.target.parentElement.parentElement.querySelector("img").src
+    }" alt="">
+    </div>
+  `;
+
+      // popup Close
+      // let articleBox = e.target.parentElement.parentElement.parentElement.parentElement;
+      let articleBox = article.parentElement;
+      articleBox.appendChild(popup);
+      if (document.querySelector(".pop-show")) {
+        document
+          .querySelector(".btn-close")
+          .addEventListener(`click`, function () {
+            document.querySelector(".pop").remove();
+          });
+      }
+    });
+  });
 }
 article_section();
-
 /*=======$$//End Articles Section//$$=======*/
 /*=======$$//Start Gallery Section//$$=======*/
 function gallery_section() {
@@ -38,7 +84,9 @@ function gallery_section() {
 gallery_section();
 /*=======$$//End Gallery Section//$$=======*/
 /*=======$$//Start Features Section//$$=======*/
-function features_section() {
+function Features_Section() {
+  let popup = document.createElement(`div`);
+  popup.classList = `pop`;
   let features = document.querySelector(`.features .container`);
   let title = [`Quality`, `Time`, `Passion`];
   features.innerHTML += ``;
@@ -49,31 +97,86 @@ function features_section() {
       <div class="text-features">
         <h1>${title[i]}</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima</p>
-        <a href="#">More</a>
+        <a class = "more" href="">More</a>
       </div>
     </div>
     `;
   }
+
+  // When click to "more" button
+  document.querySelectorAll(".more").forEach((link) => {
+    link.addEventListener(`click`, function (e) {
+      e.preventDefault();
+      popup.innerHTML += `
+    <div class="pop-overflow"></div>
+    <div class="pop-show">
+      <div class="btn-close">X</div>
+      <div class="description-pop" style = "text-align : start">
+        <h2>${e.target.parentElement.querySelector("h1").innerHTML} : </h2>
+        <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+      </div>
+    <img src="${
+      e.target.parentElement.parentElement.querySelector(".image img").src
+    }" alt="">
+    </div>
+  `;
+
+      // popup Close
+      let featurBox = e.target.parentElement.parentElement;
+      featurBox.appendChild(popup);
+      if (document.querySelector(".pop-show")) {
+        document
+          .querySelector(".btn-close")
+          .addEventListener(`click`, function () {
+            document.querySelector(".pop").innerHTML = ``;
+          });
+      }
+    });
+  });
 }
-features_section();
+Features_Section();
 /*=======$$//End Features Section//$$=======*/
 /*=======$$//Start Testimonials Section//$$=======*/
 function testimonials_section() {
   let testimonials = document.querySelector(`.testimonials .container`);
   let testimonial = [
-    { icons: [`filled fas fa-star`, `far fa-star`] },
-    { icons: [`filled fas fa-star`, `far fa-star`] },
-    { icons: [`filled fas fa-star`, `far fa-star`] },
-    { icons: [`filled fas fa-star`, `filled fas fa-star`] },
-    { icons: [`far fa-star`, `far fa-star`] },
-    { icons: [`far fa-star`, `far fa-star`] },
+    {
+      icons: [`filled fas fa-star`, `far fa-star`],
+      name: "Muhammed Farag",
+      programming: "Full Stack Developer",
+    },
+    {
+      icons: [`filled fas fa-star`, `far fa-star`],
+      name: "Ahmed Masri",
+      programming: "BackEnd Developer",
+    },
+    {
+      icons: [`filled fas fa-star`, `far fa-star`],
+      name: "Khaled Samir",
+      programming: "FrontEnd Developer",
+    },
+    {
+      icons: [`filled fas fa-star`, `filled fas fa-star`],
+      name: "Mahmoud Ahmed",
+      programming: "Windows Application Developer",
+    },
+    {
+      icons: [`far fa-star`, `far fa-star`],
+      name: "Abdullah Elhasan",
+      programming: "Flutter Developer",
+    },
+    {
+      icons: [`far fa-star`, `far fa-star`],
+      name: "Salman Harasta",
+      programming: "Full Stack Developer",
+    },
   ];
   for (let i = 0; i < 6; i++) {
     testimonials.innerHTML += `
   <div class="flex">
     <img src="imgs/avatar-0${i + 1}.png" alt="">
-    <h3>Mohamed Farag</h3>
-    <h4>Full Stack Developer</h4>
+    <h3>${testimonial[i].name}</h3>
+    <h4>${testimonial[i].programming}</h4>
     <div class="icon">
       <i class="filled fas fa-star"></i>
       <i class="filled fas fa-star"></i>
@@ -146,7 +249,7 @@ function services_section() {
       <i class="fas ${icons[i]} fa-4x"></i>
       <h2>${titles[i]}</h2>
       <div class="section-alt" data-text="0${i + 1}">
-        <a href="#">Details</a>
+        <button>Details</button>
       </div>
     </div>
     `;
@@ -154,6 +257,70 @@ function services_section() {
 }
 services_section();
 /*=======$$//End Services Section//$$=======*/
+/*=======$$//Start Latest-Events Section//$$=======*/
+function LatestEvents_Section() {
+  let email = document.querySelector(`.subscribe form .sub-email`);
+  let subscribeSubmit = document.querySelector(`.subscribe form .sub-submit`);
+  subscribeSubmit.onclick = function (e) {
+    e.preventDefault();
+    let popup = document.createElement(`div`);
+    popup.innerHTML += `
+  <div class="pop-overflow"></div>
+  <div class="pop-show">
+    <div class="btn-close">X</div>
+    <div class="description-pop">
+      <h2>Subscribe</h2>
+      <p> By "${email.value}" subscribed successfuly</p>
+    </div>
+  </div>
+  `;
+    document.querySelector(`.subscribe`).appendChild(popup);
+    if (document.querySelector(`.pop-show`)) {
+      document.querySelector(`.btn-close`).onclick = () => {
+        document.querySelector(`.subscribe`).removeChild(popup);
+      };
+    }
+  };
+}
+LatestEvents_Section();
+/*=======$$//End Latest-Events Section//$$=======*/
+/*=======$$//Start Vedio Section//$$=======*/
+function inactiveLink(path) {
+  document.querySelectorAll(`.${path}`).forEach((link) => {
+    link.addEventListener(`click`, (e) => {
+      e.preventDefault();
+    });
+  });
+}
+inactiveLink("container-video a");
+inactiveLink("footer .link");
+/*=======$$//End Vedio Section//$$=======*/
+/*=======$$//Start Discount Section//$$=======*/
+document.querySelector(`.send`).onclick = (e) => {
+  e.preventDefault();
+  let popup = document.createElement(`div`);
+  popup.classList = `pop`;
+  popup.innerHTML += `
+    <div class="pop-overflow"></div>
+    <div class="pop-show">
+      <div class="btn-close">X</div>
+      <div class="description-pop" style = "text-align : start">
+        <h2>Discount : </h2>
+        <p>Your order has been sent for the discount</p>
+      </div>
+    </div>
+  `;
+
+  // popup Close
+  let discount_sec = document.querySelector(`.discount`);
+  discount_sec.appendChild(popup);
+  if (document.querySelector(".pop-show")) {
+    document.querySelector(".btn-close").addEventListener(`click`, function () {
+      document.querySelector(".pop").remove();
+    });
+  }
+};
+/*=======$$//End Discount Section//$$=======*/
 
 /*Change the progess length of skill*/
 let skill_section = document.getElementById(`Our-Skills`);

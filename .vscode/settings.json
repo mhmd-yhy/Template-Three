@@ -1,0 +1,21 @@
+{
+  "prettier.singleAttributePerLine": false,
+  "remote.portsAttributes": {
+    "443": {
+      "protocol": "https"
+    },
+    "8443": {
+      "protocol": "https"
+    }
+  },
+  "javascript.preferences.jsxAttributeCompletionStyle": "auto",
+  "html.format.wrapAttributes": "auto",
+  "html.completion.attributeDefaultValue": "doublequotes",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "css.format.enable": true,
+  "html.format.enable": true,
+  "html.format.wrapAttributesIndentSize": null,
+  "editor.defaultFoldingRangeProvider": null,
+  "files.autoSave": "afterDelay"
+}
